@@ -1,4 +1,3 @@
-import logo from "./logo.svg"
 import "bootstrap/dist/css/bootstrap.min.css"
 import { Container, Row, Col } from "react-bootstrap"
 import { Route, Link } from "react-router-dom"

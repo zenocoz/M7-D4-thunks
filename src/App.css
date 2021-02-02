@@ -40,3 +40,7 @@
 .background-div {
   background-color: rgb(133, 112, 112);
 }
+
+.background-div h1 {
+  color: black;
+}
