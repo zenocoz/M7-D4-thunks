@@ -36,3 +36,7 @@
     transform: rotate(360deg);
   }
 }
+
+.background-div {
+  background-color: rgb(133, 112, 112);
+}
