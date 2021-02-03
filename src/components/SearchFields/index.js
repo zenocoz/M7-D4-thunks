@@ -15,9 +15,6 @@ class SearchFields extends Component {
     })
   }
 
-  // componentDidMount() {
-  //   this.submitSearch()
-  // }
   submitSearch = async () => {
     console.log("OK")
     // e.preventDefault()
