@@ -1,30 +1,51 @@
 import "bootstrap/dist/css/bootstrap.min.css"
 import { Container, Row, Col } from "react-bootstrap"
-import { Route, Link } from "react-router-dom"
+import { Route, Link, Switch } from "react-router-dom"
 import Home from "./pages/Home"
 import { Details } from "./pages/Details"
 import "./App.css"
 
-function App() {
-  return (
-    <div>
-      <Container>
-        <Row>
-          <Col className="background-div text-center ml-auto">
-            <Link to="/">
-              <h1>Jobsearch engine</h1>
-            </Link>
-          </Col>
-          <hr />
-          <Container className="mt">
-            <Route path="/" exact component={Home} />
+import React, { Component } from "react"
 
-            <Route path="/details" exact component={Details} />
-          </Container>
-        </Row>
-      </Container>
-    </div>
-  )
+export default class App extends Component {
+  state = {
+    jobs: [],
+  }
+
+  getJobs = (data) => {
+    this.setState({ ...this.state, jobs: data })
+    console.log(this.state.jobs)
+  }
+
+  render() {
+    return (
+      <div>
+        <Container>
+          <Row>
+            <Col className="background-div text-center ml-auto">
+              <Link to="/">
+                <h1>Jobsearch engine</h1>
+              </Link>
+            </Col>
+            <hr />
+            <Container className="mt">
+              <Switch>
+                <Route
+                  path="/"
+                  exact
+                  render={(props) => <Home getJobs={this.getJobs} />}
+                />
+
+                <Route
+                  path="/details"
+                  exact
+                  render={(props) => <Details jobs={this.state.jobs} />}
+                />
+              </Switch>
+            </Container>
+          </Row>
+        </Container>
+      </div>
+    )
+  }
 }
-
-export default App

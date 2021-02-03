@@ -1,9 +1,12 @@
 import React, { Component } from "react"
 import { Form, Button } from "react-bootstrap"
+import { Link, withRouter } from "react-router-dom"
+import { Details } from "../../pages/Details"
+import { BrowserRouter as Router } from "react-router-dom"
 
-export default class SearchFields extends Component {
+class SearchFields extends Component {
   state = {
-    jobs: [],
+    // jobs: [],
     position: { description: " ", location: " " },
   }
 
@@ -15,21 +18,19 @@ export default class SearchFields extends Component {
 
   submitSearch = async (e) => {
     e.preventDefault()
-    console.log("OK")
     let response = await fetch(
-      `https://fede-observablehq.herokuapp.com/https://jobs.github.com/positions.json?description=frontend&location=berlin`
+      `https://fede-observablehq.herokuapp.com/https://jobs.github.com/positions.json?description=${this.state.position.description}&location=${this.state.position.location}`
     )
-    let data = await response.json()
-    console.log(data)
-  }
+    if (response.ok) {
+      let data = await response.json()
+      this.props.getJobs(data)
 
-  //   componentDidMount = async () => {
-  //     let response = await fetch(
-  //       `https://fede-observablehq.herokuapp.com/https://jobs.github.com/positions.json?description=frontend&location=berlin`
-  //     )
-  //     let data = await response.json()
-  //     console.log(data)
-  //   }
+      this.setState({ position: { description: " ", location: " " } })
+
+      this.props.history.push("/details")
+      //   console.log("jobs,", this.state.jobs)
+    }
+  }
 
   render() {
     return (
@@ -59,12 +60,17 @@ export default class SearchFields extends Component {
               onChange={this.handleChange}
             />
           </Form.Group>
-
-          <Button className="m" variant="primary" type="submit">
-            Find Jobs
-          </Button>
+          <Router>
+            <Button className="m" variant="primary" type="submit">
+              Find Jobs
+            </Button>
+          </Router>
         </Form>
+
+        {/* {this.state.jobs.length > 0 && <Details jobs={this.state.jobs} />} */}
       </div>
     )
   }
 }
+
+export default withRouter(SearchFields)

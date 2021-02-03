@@ -1,16 +1,16 @@
 import React, { Component } from "react"
-import { Container, Row, Col } from "react-bootstrap"
+import Job from "../../components/Job"
+// import { Container, Row, Col } from "react-bootstrap"
 
-export class Details extends Component {
-  render() {
-    return (
-      <Container>
-        <Row>
-          <Col className="details mt-2">
-            <h1>Job Details</h1>
-          </Col>
-        </Row>
-      </Container>
-    )
-  }
+export const Details = ({ jobs }) => {
+  return (
+    <div>
+      <h1>Details</h1>{" "}
+      <ul className="col-md-4">
+        {jobs.map((job, index) => (
+          <Job {...job} key={index} />
+        ))}
+      </ul>
+    </div>
+  )
 }
