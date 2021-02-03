@@ -2,7 +2,8 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import { Container, Row, Col } from "react-bootstrap"
 import { Route, Link } from "react-router-dom"
 import Home from "./pages/Home"
-import { Details } from "./pages/Details"
+import Details from "./pages/Details"
+import Favorites from "./pages/Favorites"
 import JobDetails from "./components/JobDetails"
 import "./App.css"
 
@@ -53,7 +54,7 @@ export default class App extends Component {
               <Route
                 path="/favorites"
                 exact
-                render={(props) => <Home getJobs={this.getJobs} />}
+                render={(props) => <Favorites jobs={this.state.jobs} />}
               />
             </Container>
           </Row>
