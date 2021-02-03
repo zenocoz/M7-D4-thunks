@@ -50,7 +50,11 @@ class JobDetails extends React.Component {
               <Card.Body>
                 <Card.Title>Company Name: {this.state.job.company}</Card.Title>
                 {this.state.job.company_url && (
-                  <a target="_blank" href={this.state.job.company_url}>
+                  <a
+                    target="_blank"
+                    rel="noreferrer"
+                    href={this.state.job.company_url}
+                  >
                     {this.state.job.company_url}
                   </a>
                 )}

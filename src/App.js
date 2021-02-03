@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css"
 import { Container, Row, Col } from "react-bootstrap"
-import { Route, Link, Switch, useParams } from "react-router-dom"
+import { Route, Link } from "react-router-dom"
 import Home from "./pages/Home"
 import { Details } from "./pages/Details"
 import JobDetails from "./components/JobDetails"

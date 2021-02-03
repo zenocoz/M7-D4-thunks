@@ -1,13 +1,13 @@
 import { createStore } from "redux"
-import rootReducer from "../reducers"
+import { mainReducer } from "../reducers"
 
-const initialState = {
-  favoriteJobs: [],
+export const initialState = {
+  favorites: [],
 }
 
 export default function configureStore() {
   return createStore(
-    rootReducer,
+    mainReducer,
     initialState,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   )
