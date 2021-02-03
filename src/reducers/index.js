@@ -1,4 +1,4 @@
-export default function (state = {}, action) {
+export default function (state = { favorites: [] }, action) {
   switch (action.type) {
     case "ADD_TO_FAVORITES":
       return {
@@ -7,14 +7,13 @@ export default function (state = {}, action) {
       }
   }
 
-  //   case "REMOVE_FROM_FAVORITES":
-  //     return {
-  //       ...state,
-  //         favorites: [
-  //           ...state.favorites.filter(
-  //             (jobId) => jobIdId !== action.payload
-  //           ),
-  //         ],
-  //       },
-  //     }
+  // case "REMOVE_FROM_FAVORITES":
+  //   return {
+  //     ...state,
+  //       favorites: [
+  //         ...state.favorites.filter(
+  //           (jobId) => jobIdId !== action.payload
+  //         ),
+  //       ],
+  //     },
 }

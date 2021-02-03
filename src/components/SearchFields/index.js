@@ -1,8 +1,6 @@
 import React, { Component } from "react"
 import { Form, Button } from "react-bootstrap"
-import { Link, withRouter } from "react-router-dom"
-import { Details } from "../../pages/Details"
-import { BrowserRouter as Router } from "react-router-dom"
+import { withRouter } from "react-router-dom"
 
 class SearchFields extends Component {
   state = {
@@ -24,7 +22,6 @@ class SearchFields extends Component {
     if (response.ok) {
       let data = await response.json()
       this.props.getJobs(data)
-
       this.setState({ position: { description: " ", location: " " } })
     }
   }

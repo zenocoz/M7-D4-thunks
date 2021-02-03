@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css"
 import { Container, Row, Col } from "react-bootstrap"
-import { Route, Link, Switch } from "react-router-dom"
+import { Route, Link, Switch, useParams } from "react-router-dom"
 import Home from "./pages/Home"
 import { Details } from "./pages/Details"
 import JobDetails from "./components/JobDetails"
@@ -10,19 +10,7 @@ import React, { Component } from "react"
 
 export default class App extends Component {
   state = {
-    selectedJob: {},
     jobs: [],
-  }
-
-  chooseJob = async (id) => {
-    const job = await this.state.jobs.find((job) => job.id === id)
-    console.log(job)
-
-    this.setState({
-      ...this.state,
-      selectedJob: { ...this.state.selectedJob, job },
-    })
-    console.log(this.state.selectedJob)
   }
 
   getJobs = (data) => {
@@ -59,7 +47,7 @@ export default class App extends Component {
               <Route
                 path="/details/:id"
                 exact
-                render={(props) => <JobDetails job={this.selectedJob} />}
+                render={(props) => <JobDetails jobs={this.state.jobs} />}
               />
 
               <Route

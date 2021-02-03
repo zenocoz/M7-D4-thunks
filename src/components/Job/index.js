@@ -1,6 +1,6 @@
 import React from "react"
 import { Card, Button } from "react-bootstrap"
-import { Link, withRouter } from "react-router-dom"
+import { withRouter } from "react-router-dom"
 import { connect } from "react-redux"
 
 const mapStateToProps = (state) => state
@@ -23,7 +23,6 @@ const Job = (props) => {
         <Card.Text>{props.type}</Card.Text>
         <Card.Link
           onClick={() => {
-            props.chooseJob(props.id)
             props.history.push("/details/" + props.id)
           }}
         >
@@ -40,7 +39,5 @@ const Job = (props) => {
     </Card>
   )
 }
-
-// export default withRouter(Job)
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Job))

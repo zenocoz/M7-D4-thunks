@@ -1,6 +1,5 @@
 import React, { Component } from "react"
 import Job from "../../components/Job"
-// import { Container, Row, Col } from "react-bootstrap"
 
 export const Details = ({ jobs, chooseJob }) => {
   return (
