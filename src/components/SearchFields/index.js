@@ -6,7 +6,6 @@ import { BrowserRouter as Router } from "react-router-dom"
 
 class SearchFields extends Component {
   state = {
-    // jobs: [],
     position: { description: " ", location: " " },
   }
 
@@ -16,8 +15,12 @@ class SearchFields extends Component {
     })
   }
 
-  submitSearch = async (e) => {
-    e.preventDefault()
+  // componentDidMount() {
+  //   this.submitSearch()
+  // }
+  submitSearch = async () => {
+    console.log("OK")
+    // e.preventDefault()
     let response = await fetch(
       `https://fede-observablehq.herokuapp.com/https://jobs.github.com/positions.json?description=${this.state.position.description}&location=${this.state.position.location}`
     )
@@ -26,9 +29,6 @@ class SearchFields extends Component {
       this.props.getJobs(data)
 
       this.setState({ position: { description: " ", location: " " } })
-
-      this.props.history.push("/details")
-      //   console.log("jobs,", this.state.jobs)
     }
   }
 
@@ -37,7 +37,7 @@ class SearchFields extends Component {
       <div className="search-fields mt-5">
         <Form
           className="d-flex flex-row justify-content-between"
-          onSubmit={this.submitSearch}
+          // onSubmit={this.submitSearch}
         >
           <Form.Group>
             <Form.Label>What</Form.Label>
@@ -60,11 +60,17 @@ class SearchFields extends Component {
               onChange={this.handleChange}
             />
           </Form.Group>
-          <Router>
-            <Button className="m" variant="primary" type="submit">
-              Find Jobs
-            </Button>
-          </Router>
+
+          <Button
+            className="m"
+            variant="primary"
+            onClick={() => {
+              this.submitSearch()
+              this.props.history.push("/details")
+            }}
+          >
+            Find Jobs
+          </Button>
         </Form>
 
         {/* {this.state.jobs.length > 0 && <Details jobs={this.state.jobs} />} */}

@@ -29,19 +29,17 @@ export default class App extends Component {
             </Col>
             <hr />
             <Container className="mt">
-              <Switch>
-                <Route
-                  path="/"
-                  exact
-                  render={(props) => <Home getJobs={this.getJobs} />}
-                />
+              <Route
+                path="/"
+                exact
+                render={(props) => <Home getJobs={this.getJobs} />}
+              />
 
-                <Route
-                  path="/details"
-                  exact
-                  render={(props) => <Details jobs={this.state.jobs} />}
-                />
-              </Switch>
+              <Route
+                path="/details"
+                exact
+                render={(props) => <Details jobs={this.state.jobs} />}
+              />
             </Container>
           </Row>
         </Container>
