@@ -16,9 +16,10 @@ class Favorites extends Component {
   }
 
   filterFavorites = () => {
-    const favoriteJobs = this.props.jobsFound.filter(
-      (job, i) => job.id === this.props.favorites[i]
+    const favoriteJobs = this.props.jobsFound.filter((job) =>
+      this.props.favorites.includes(job.id)
     )
+    console.log(favoriteJobs)
     this.setState({ favoriteJobs })
   }
 

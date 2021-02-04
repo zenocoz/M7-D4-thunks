@@ -5,8 +5,7 @@ export const favoritesReducer = (state = initialState.favorites, action) => {
     case "ADD_TO_FAVORITES":
       return state.concat(action.payload)
     case "REMOVE_FROM_FAVORITES":
-      return state.filter((jobId) => jobId !== action.payload)
-
+      return state.filter((jobid) => jobid !== action.payload)
     default:
       return state
   }

@@ -35,19 +35,6 @@ class SearchFields extends Component {
     })
   }
 
-  // submitSearch = async () => {
-  //   console.log("OK")
-  //   // e.preventDefault()
-  //   let response = await fetch(
-  //     `https://fede-observablehq.herokuapp.com/https://jobs.github.com/positions.json?description=${this.state.position.description}&location=${this.state.position.location}`
-  //   )
-  //   if (response.ok) {
-  //     let data = await response.json()
-  //     this.props.getJobs(data)
-  //     this.setState({ position: { description: " ", location: " " } })
-  //   }
-  // }
-
   render() {
     return (
       <div className="search-fields mt-5">
@@ -88,8 +75,6 @@ class SearchFields extends Component {
             Find Jobs
           </Button>
         </Form>
-
-        {/* {this.state.jobs.length > 0 && <Details jobs={this.state.jobs} />} */}
       </div>
     )
   }
