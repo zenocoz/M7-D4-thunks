@@ -6,18 +6,17 @@ import Details from "./pages/Details"
 import Favorites from "./pages/Favorites"
 import JobDetails from "./components/JobDetails"
 import "./App.css"
-
 import React, { Component } from "react"
 
-export default class App extends Component {
+class App extends Component {
   state = {
     jobs: [],
   }
 
-  getJobs = (data) => {
-    this.setState({ ...this.state, jobs: data })
-    console.log(this.state.jobs)
-  }
+  // getJobs = (data) => {
+  //   this.setState({ ...this.state, jobs: data })
+  //   console.log(this.state.jobs)
+  // }
 
   render() {
     return (
@@ -31,19 +30,9 @@ export default class App extends Component {
             </Col>
             <hr />
             <Container className="mt">
-              <Route
-                path="/"
-                exact
-                render={(props) => <Home getJobs={this.getJobs} />}
-              />
+              <Route path="/" exact render={(props) => <Home />} />
 
-              <Route
-                path="/details"
-                exact
-                render={(props) => (
-                  <Details jobs={this.state.jobs} chooseJob={this.chooseJob} />
-                )}
-              />
+              <Route path="/details" exact render={(props) => <Details />} />
 
               <Route
                 path="/details/:id"
@@ -63,3 +52,5 @@ export default class App extends Component {
     )
   }
 }
+
+export default App

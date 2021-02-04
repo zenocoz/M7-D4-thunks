@@ -1,6 +1,28 @@
 import React, { Component } from "react"
 import { Form, Button } from "react-bootstrap"
 import { withRouter } from "react-router-dom"
+import { connect } from "react-redux"
+
+const mapStateToProps = (state) => state
+
+const mapDispatchToProps = (dispatch) => ({
+  submitSearchThunk: (position) =>
+    dispatch(async (dispatch, getState) => {
+      const response = await fetch(
+        `https://fede-observablehq.herokuapp.com/https://jobs.github.com/positions.json?description=${position.description}&location=${position.location}`
+      )
+      const data = await response.json()
+      console.log(data)
+      if (response.ok) {
+        dispatch({
+          type: "GET_JOBS",
+          payload: data,
+        })
+      } else {
+        console.log("ERROR")
+      }
+    }),
+})
 
 class SearchFields extends Component {
   state = {
@@ -13,18 +35,18 @@ class SearchFields extends Component {
     })
   }
 
-  submitSearch = async () => {
-    console.log("OK")
-    // e.preventDefault()
-    let response = await fetch(
-      `https://fede-observablehq.herokuapp.com/https://jobs.github.com/positions.json?description=${this.state.position.description}&location=${this.state.position.location}`
-    )
-    if (response.ok) {
-      let data = await response.json()
-      this.props.getJobs(data)
-      this.setState({ position: { description: " ", location: " " } })
-    }
-  }
+  // submitSearch = async () => {
+  //   console.log("OK")
+  //   // e.preventDefault()
+  //   let response = await fetch(
+  //     `https://fede-observablehq.herokuapp.com/https://jobs.github.com/positions.json?description=${this.state.position.description}&location=${this.state.position.location}`
+  //   )
+  //   if (response.ok) {
+  //     let data = await response.json()
+  //     this.props.getJobs(data)
+  //     this.setState({ position: { description: " ", location: " " } })
+  //   }
+  // }
 
   render() {
     return (
@@ -59,7 +81,7 @@ class SearchFields extends Component {
             className="m"
             variant="primary"
             onClick={() => {
-              this.submitSearch()
+              this.props.submitSearchThunk(this.state.position)
               this.props.history.push("/details")
             }}
           >
@@ -73,4 +95,7 @@ class SearchFields extends Component {
   }
 }
 
-export default withRouter(SearchFields)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(SearchFields))
