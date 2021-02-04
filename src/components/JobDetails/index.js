@@ -1,6 +1,9 @@
 import React from "react"
 import { Container, Card, Row, Col } from "react-bootstrap"
 import { withRouter } from "react-router-dom"
+import { connect } from "react-redux"
+
+const mapStateToProps = (state) => state
 
 class JobDetails extends React.Component {
   state = {
@@ -8,14 +11,15 @@ class JobDetails extends React.Component {
   }
 
   findJob = (jobId) => {
-    const job = this.props.jobs.find((job) => job.id === jobId)
+    const job = this.props.jobsFound.find((job) => job.id === jobId)
+    console.log(job)
     this.setState({ job })
   }
 
   componentDidMount() {
     const jobId = this.props.match.params.id
+    console.log(this.props.jobsFound)
     this.findJob(jobId)
-    console.log(this.props.jobs)
   }
 
   render() {
@@ -67,4 +71,4 @@ class JobDetails extends React.Component {
   }
 }
 
-export default withRouter(JobDetails)
+export default connect(mapStateToProps)(withRouter(JobDetails))
