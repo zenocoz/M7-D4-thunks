@@ -16,7 +16,7 @@ class Favorites extends Component {
   }
 
   filterFavorites = () => {
-    const favoriteJobs = this.props.jobs.filter(
+    const favoriteJobs = this.props.jobsFound.filter(
       (job, i) => job.id === this.props.favorites[i]
     )
     this.setState({ favoriteJobs })
@@ -36,8 +36,8 @@ class Favorites extends Component {
     return (
       <Container>
         {this.state.favoriteJobs.length > 0 ? (
-          this.state.favoriteJobs.map((job) => (
-            <Card className="mt-3" style={{ width: "18rem" }}>
+          this.state.favoriteJobs.map((job, index) => (
+            <Card key={index} className="mt-3" style={{ width: "18rem" }}>
               <Card.Img variant="top" src={job.company_logo} />
               <Card.Body>
                 <Card.Title>{job.company}</Card.Title>

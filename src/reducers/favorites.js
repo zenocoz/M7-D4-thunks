@@ -1,6 +1,6 @@
 import { initialState } from "../store"
 
-export const favoritesReducer = (state = {}, action) => {
+export const favoritesReducer = (state = initialState.favorites, action) => {
   switch (action.type) {
     case "ADD_TO_FAVORITES":
       return state.concat(action.payload)
